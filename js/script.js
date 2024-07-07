@@ -8,7 +8,7 @@ var clientes = []
 
 function salvar() {
 
-
+    doc5 = document.getElementById('inputNumero').value; 
 
 
     var cliente = {
@@ -20,14 +20,22 @@ function salvar() {
         numero: doc5,
         bairro: doc6,
         cidade: doc7,
-        estado: doc8
+        estado: doc8,
 
     }
+
+   
 
     addNewRow(cliente)
     clientes.push(cliente)
     document.getElementById('formClientes').reset()
     console.log(clientes)
+
+    
+
+
+
+    
 
 
 
@@ -51,19 +59,15 @@ function search() {
 
         change(data)
         $("#inputNumero").prop("disabled", false);
+        document.getElementById('alerta').innerHTML = ''
         
-
-
-
-
-
-
 
     })
         .fail(() => {
             console.log("Error")
             $("#inputNumero").prop("disabled", true);
-        })
+            document.getElementById('alerta').innerHTML = `<div class="col-4 mt-4 p-1 text-danger"  text-danger">CEP inválido</div>`
+    })
 }
 
 function addNewRow(cliente) {
@@ -83,8 +87,6 @@ function addNewRow(cliente) {
     cell = newRow.insertCell();
     cell.innerHTML = `${cliente.nome} ${cliente.sobrenome}`;
 
-
-
     cell = newRow.insertCell();
     cell.innerHTML = cliente.endereco;
 
@@ -100,20 +102,39 @@ function addNewRow(cliente) {
     cell = newRow.insertCell();
     cell.innerHTML = cliente.estado;
 
+    
+
+    
+
+    /*
+    
+
+
+    
+
+
+    for(let items of cliente){
+        items != cliente.nome && items != cliente.sobrenome && items != cliente.numero ? () => {
+            
+            cell = newRow.insertCell();
+            cell.innerHTML = items;
+        }:
+        '';
+    }
+
+    */
+
 
 
 }
 
 function change(data) {
 
-    var nome = document.getElementById('inputNome').value;
-    var sobrenome = document.getElementById('inputSobrenome').value;
-
-    doc1 = nome;    
+    doc1 = document.getElementById('inputNome').value;    
     doc2 = document.getElementById('inputSobrenome').value;
     doc3 = document.getElementById('inputCep').value.replace('-', '');
-    doc5 = document.getElementById('inputNumero').value;        
-
+ 
+    
     doc4 = data.logradouro || ''
     doc6 = data.bairro || ''
     doc7 = data.localidade || ''
