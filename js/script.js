@@ -8,6 +8,7 @@ var clientes = []
 
 function salvar() {
 
+    // Número do imóvel
     doc5 = document.getElementById('inputNumero').value; 
 
 
@@ -31,25 +32,10 @@ function salvar() {
     document.getElementById('formClientes').reset()
     console.log(clientes)
 
-    
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
+// Procura os dados do CEP
 function search() {
 
 
@@ -70,6 +56,7 @@ function search() {
     })
 }
 
+// Nova linha na tabela
 function addNewRow(cliente) {
 
 
@@ -104,30 +91,9 @@ function addNewRow(cliente) {
 
     
 
-    
-
-    /*
-    
-
-
-    
-
-
-    for(let items of cliente){
-        items != cliente.nome && items != cliente.sobrenome && items != cliente.numero ? () => {
-            
-            cell = newRow.insertCell();
-            cell.innerHTML = items;
-        }:
-        '';
-    }
-
-    */
-
-
-
 }
 
+// Colocar dados nos valores do array Cliente
 function change(data) {
 
     doc1 = document.getElementById('inputNome').value;    
