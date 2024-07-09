@@ -9,8 +9,10 @@ var clientes = []
 function salvar() {
 
     // Número do imóvel
-    doc5 = document.getElementById('inputNumero').value; 
+    doc5 = document.getElementById('inputNumero').value;
 
+
+    var validation = true;
 
     var cliente = {
         id: clientes.length,
@@ -25,12 +27,27 @@ function salvar() {
 
     }
 
+    // Valida se todos os campos estão preenchidos
    
+    for (let docs in cliente) {
+        if (cliente[docs] === '') {
+            validation = false;
+            console.log(docs);
+           
+        }
 
-    addNewRow(cliente)
-    clientes.push(cliente)
-    document.getElementById('formClientes').reset()
-    console.log(clientes)
+    }
+
+    // Adiciona os dados ao array de clientes caso tudo estiver correto
+    if (validation) {
+        addNewRow(cliente)
+        clientes.push(cliente)
+        document.getElementById('formClientes').reset()
+        console.log(clientes)
+        $("#inputNumero").prop("disabled", true);
+        
+    }
+
 
 
 }
@@ -46,14 +63,14 @@ function search() {
         change(data)
         $("#inputNumero").prop("disabled", false);
         document.getElementById('alerta').innerHTML = ''
-        
+
 
     })
         .fail(() => {
             console.log("Error")
             $("#inputNumero").prop("disabled", true);
             document.getElementById('alerta').innerHTML = `<div class="col-4 mt-4 p-1 text-danger"  text-danger">CEP inválido</div>`
-    })
+        })
 }
 
 // Nova linha na tabela
@@ -89,18 +106,18 @@ function addNewRow(cliente) {
     cell = newRow.insertCell();
     cell.innerHTML = cliente.estado;
 
-    
+
 
 }
 
 // Colocar dados nos valores do array Cliente
 function change(data) {
 
-    doc1 = document.getElementById('inputNome').value;    
+    doc1 = document.getElementById('inputNome').value;
     doc2 = document.getElementById('inputSobrenome').value;
     doc3 = document.getElementById('inputCep').value.replace('-', '');
- 
-    
+
+
     doc4 = data.logradouro || ''
     doc6 = data.bairro || ''
     doc7 = data.localidade || ''
@@ -112,21 +129,6 @@ function change(data) {
     document.getElementById('inputBairro').value = data.bairro || ''
     document.getElementById('inputCidade').value = data.localidade || ''
     document.getElementById('inputEstado').value = data.uf || ''
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 
 
 
